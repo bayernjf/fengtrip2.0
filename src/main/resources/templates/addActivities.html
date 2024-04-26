@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>JINGFENGTRIP</title>
+<!--     <title>DASHGUM - FREE Bootstrap Admin Template</title> -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/js/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="assets/js/bootstrap-daterangepicker/daterangepicker.css" />
+        
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <div th:include="head :: common_head"></div>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <div th:include="right :: common_right"></div>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+          	<h3><i class="fa fa-angle-right"></i> Add Activities</h3>
+          	
+          	<!-- BASIC FORM ELELEMNTS -->
+          	<div class="row mt">
+          		<div class="col-lg-12">
+                  <div class="form-panel">
+                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Activity Details</h4>
+                      <form id="fengaddform" action="/jingfengtrip/addActivity.do" class="form-horizontal style-form" method="post">
+                          
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">location</label>
+                              <div class="col-sm-10">
+                                  <input name="location" type="text" class="form-control round-form">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">activity</label>
+                              <div class="col-sm-10">
+                                  <input name="activity" type="text" class="form-control round-form">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">transportation</label>
+                              <div class="col-sm-10">
+                                  <input name="transportation" type="text" class="form-control round-form">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">time</label>
+                              <div class="col-sm-10">
+                                  <input name="time" type="text" class="form-control round-form">
+                              </div>
+                          </div>
+                          
+                          <div class="form-group">
+                          	<label class="col-sm-2 col-sm-2 control-label">priority</label>
+                             <select name="priority">
+                             <option value="-1">---请选择---</option>
+							  <option value="1" selected>!!!!!</option>
+							  <option value="2">!!!!</option>
+							  <option value="3">!!!</option>
+							  <option value="4">!!</option>
+							  <option value="5">!</option>
+							</select>
+                          </div>
+                          <div class="form-group">
+                          	<label class="col-sm-2 col-sm-2 control-label">city</label>
+                                                                      省：<select id="province" name="province">
+							  <option value="-1">---请选择省---</option>
+							  <!-- <option value="1">jiang</option> -->
+							</select>
+							市：<select id="city" name="city">
+								<option value="-1">---请选择市---</option>
+								<!-- <option value="11">jiang</option> -->
+							</select>
+							<input th:hidden="true" name="fengcity">
+                          </div>
+                          
+                          <div class="form-group">
+                          	<label class="col-sm-2 col-sm-2 control-label">feng</label>
+                             <div class="switch switch-square"
+                                    data-on-label="<i class=' fa fa-check'></i>"
+                                    data-off-label="<i class='fa fa-times'></i>">
+                                   <input type="checkbox" checked=""/>
+                               </div>
+                          </div>
+                          
+                          <div class="form-group">
+                          	<label class="col-sm-2 col-sm-2 control-label"></label>
+                              <button type="button" class="btn btn-theme">Add</button>
+                          </div>
+                          
+                      </form>
+                  </div>
+          		</div><!-- col-lg-12-->      	
+          	</div><!-- /row -->
+          	
+		</section><!-- /wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
+      <!--main content end-->
+      <!--footer start-->
+      <div th:include="foot :: common_foot"></div>
+      <!--footer end-->
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+
+    <!--script for this page-->
+    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+	<!--custom switch-->
+	<script src="assets/js/bootstrap-switch.js"></script>
+	
+	<!--custom tagsinput-->
+	<script src="assets/js/jquery.tagsinput.js"></script>
+	
+	<!--custom checkbox & radio-->
+	
+	<script type="text/javascript" src="assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/date.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+	
+	<script type="text/javascript" src="assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+	
+	
+	<script src="assets/js/form-component.js"></script>    
+    
+    
+    <script type="text/javascript">
+    
+    
+		$( "button:contains('Add')" ).click( function() {
+			//var val = $( "#city option:selected" ).val();
+			var fengcity = $( "#city option:selected" ).text();
+			//alert( fengcity );
+			$( "input[name=fengcity]" ).val( fengcity );
+			//alert( $( "input[name=fengcity]" ).val() );
+			alert( "添加成功" );
+			$( "#fengaddform" ).submit();
+		} );
+		
+    
+    
+    	/* $.ajax( {
+    		url: "/jingfengtrip/getAllCities.do",
+    		dataType: "json",
+  			success: function( result ) {
+  				if ( result.code == 1 ) {
+  					//alert( result.msg );
+  				} else {
+  					//alert( result.msg );
+  				}
+  			}
+    	} ); */
+    	
+    	
+    	/* var fengAddress = {
+    	1: { provinceName: "安徽", cities: { 
+    		11: { cityName: "蚌埠", districts: {
+    			111: "龙子湖区",
+    			112: "蚌山区"
+    		} },
+    		12: { cityName: "合肥", districts: {
+    			121: "蜀山区",
+    			122: "瑶海区"
+    		} },
+    	} },
+    	2: { provinceName: "上海", cities: { 
+    		21: { cityName: "上海", districts: {
+    			211: "黄浦区",
+    			212: "闵行区"
+    		} },
+    	} },
+    	3: { provinceName: "江苏", cities: { 
+    		31: { cityName: "南京", districts: {
+    			311: "玄武区",
+    			312: "浦口区"
+    		} },
+    		32: { cityName: "苏州", districts: {
+    			321: "姑苏区",
+    			322: "吴中区"
+    		} }
+    	} }
+    	}; */
+    	var fengAddress = {  };
+    	// 从数据库获得地址数据：“数据结构”和上面的fengAddress必须一致！
+    	// 优化：获取前判断cookie中有没有地址信息，如果没有，从数据库获得
+    	// 暂且不做优化
+    	$.ajax( {
+	    	url: "/jingfengtrip/getAllCities.do",
+	    	type: "post",
+	    	dataType: "json",
+	    	success: function( result ) {
+	    		if ( result.code == 1 ) {
+	    			$.each( result.msg, function( key, thiz ) {
+	    				var fengCities = {  };
+	    				$.each( thiz.childrenProvinces, function( key2, thiz2 ) {
+	    					fengCities[thiz2.codeid] = {
+    							cityname: thiz2.cityname
+	    					};
+	    				} );
+	    				fengAddress[thiz.codeid] = {
+	    					provinceName: thiz.cityname,
+	    					cities: fengCities
+	    				};
+	    			} );
+	    			jiangfengjiang();
+	    		} else {
+	    			alert(result.msg);
+	    		}
+	    	}
+    	} );
+    	
+    	function showCity() {
+	    	$( "#city" ).children( "option:not(:first)" ).remove();
+	    	var cities = fengAddress[$( "#province" ).val()]["cities"];
+	    	$.each( cities, function( key, thiz ) {
+	    		$( "#city" ).append( "<option value='"+key+"'>"+thiz.cityname+"</option>" );
+	    	} );
+	    	
+	    	$( "#city option[value='3403']" ).attr("selected", "selected");
+    	}
+    	
+    	$( "#province" ).change( showCity );
+    	
+    	function jiangfengjiang() {
+	    	$.each( fengAddress, function( keyIfObj, thiz ) {
+	    		$( "#province" ).append( "<option value='"+keyIfObj+"'>"+thiz.provinceName+"</option>" );
+	    	} );
+	    	
+	    	$( "#province option[value='34']" ).attr("selected", "selected");
+	    	showCity();
+    	}
+    	
+    </script>
+    
+    
+  <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+  </body>
+</html>

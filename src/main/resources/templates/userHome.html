@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>FENGTRIP2.0</title>
+<!--     <title>DASHGUM - FREE Bootstrap Admin Template</title> -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/to-do.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <div th:include="head :: common_head"></div>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <div th:include="right :: common_right"></div>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+          	<h3><i class="fa fa-angle-right"></i> User Home</h3>
+          	
+          	<!-- SORTABLE TO DO LIST -->
+              <div class="row mt mb">
+                  <div class="col-md-12">
+                      <section class="task-panel tasks-widget">
+	                	<div class="panel-heading">
+	                        <div class="pull-left"><h5><i class="fa fa-tasks"></i> Todo List</h5></div>
+	                        <br>
+	                 	</div>
+                          <div class="panel-body">
+                              <div class="task-content">
+                                  <ul id="sortable" class="task-list">
+                                      
+                                      
+                                      <li th:each="jft, vs : ${jingfengtrips}" class="list-primary">
+                                          <i class=" fa fa-ellipsis-v"></i>
+                                          <div class="task-checkbox">
+                                              <input type="checkbox" class="list-child" value=""/>
+                                          </div>
+                                          <div class="task-title">
+                                              <span class="task-title-sp">
+                                              	地点：<font id="location" color="red" th:text="${jft.location }"></font>。
+                                              	活动：<font id="activity" color="blue" th:text="${jft.activity }"></font>。
+                                              	时间：<font id="time" color="pink" th:text="${jft.time }"></font>。
+                                              	交通工具：<font id="transportation" color="green" th:text="${jft.transportation }"></font>。
+                                              </span>
+                                              <span id="stat" class="fengspan badge bg-theme" th:if="${jft.stat == 0 }" th:text="未完成" th:style="'color:red;'"></span>
+                                              <span id="stat" class="fengspan badge bg-theme" th:if="${jft.stat == 1 }" th:text="已完成"></span>
+                                              <span th:if="${jft.priority == 1 }" class="fengspan badge bg-theme">优先等级：<font id="priority" color="red" th:text="${jft.priority }+'!!!!!'"></font></span>
+                                              <span th:if="${jft.priority == 2 }" class="fengspan badge bg-theme">优先等级：<font id="priority" color="red" th:text="${jft.priority }+'!!!!'"></font></span>
+                                              <span th:if="${jft.priority == 3 }" class="fengspan badge bg-theme">优先等级：<font id="priority" color="red" th:text="${jft.priority }+'!!!'"></font></span>
+                                              <span th:if="${jft.priority == 4 }" class="fengspan badge bg-theme">优先等级：<font id="priority" color="red" th:text="${jft.priority }+'!!'"></font></span>
+                                              <span th:if="${jft.priority == 5 }" class="fengspan badge bg-theme">优先等级：<font id="priority" color="red" th:text="${jft.priority }+'!'"></font></span>
+                                              <div class="pull-right hidden-phone">
+<!--                                               	  <span id="createTime" th:text="${#dates.format(jft.createTime, 'yyyy-MM-dd hh:mm:ss')}"></span> -->
+                                              	  <span id="createTime" th:text="${#dates.format(jft.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                                  <!-- <button class="btn btn-success btn-xs fa fa-check"></button> -->
+                                                  <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                  <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                              </div>
+                                          </div>
+                                      </li>
+
+                                      
+                                      
+                                      
+                                      <!-- <li class="list-danger">
+                                          <i class=" fa fa-ellipsis-v"></i>
+                                          <div class="task-checkbox">
+                                              <input type="checkbox" class="list-child" value=""  />
+                                          </div>
+                                          <div class="task-title">
+                                              <span class="task-title-sp">Extensive collection of plugins</span>
+                                              <span class="badge bg-warning">Cool</span>
+                                              <div class="pull-right hidden-phone">
+                                                  <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                  <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                  <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      
+                                      <li class="list-success">
+                                          <i class=" fa fa-ellipsis-v"></i>
+                                          <div class="task-checkbox">
+                                              <input type="checkbox" class="list-child" value=""  />
+                                          </div>
+                                          <div class="task-title">
+                                              <span class="task-title-sp">Free updates always, no extra fees.</span>
+                                              <span class="badge bg-success">2 Days</span>
+                                              <div class="pull-right hidden-phone">
+                                                  <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                  <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                  <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      
+                                      <li class="list-warning">
+                                          <i class=" fa fa-ellipsis-v"></i>
+                                          <div class="task-checkbox">
+                                              <input type="checkbox" class="list-child" value=""  />
+                                          </div>
+                                          <div class="task-title">
+                                              <span class="task-title-sp">More features coming soon</span>
+                                              <span class="badge bg-info">Tomorrow</span>
+                                              <div class="pull-right hidden-phone">
+                                                  <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                  <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                  <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      
+                                      <li class="list-info">
+                                          <i class=" fa fa-ellipsis-v"></i>
+                                          <div class="task-checkbox">
+                                              <input type="checkbox" class="list-child" value=""  />
+                                          </div>
+                                          <div class="task-title">
+                                              <span class="task-title-sp">Hey, seriously, you should buy this Dashboard</span>
+                                              <span class="badge bg-important">Now</span>
+                                              <div class="pull-right hidden-phone">
+                                                  <button class="btn btn-success btn-xs fa fa-check"></button>
+                                                  <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                                                  <button class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                                              </div>
+                                          </div>
+                                      </li> -->
+                                      
+                                      
+                                      
+                                      
+
+                                  </ul>
+                              </div>
+                              <div class=" add-task-row">
+                                  <a class="btn btn-success btn-sm pull-left" href="/addActivities.html">Add New Tasks</a>
+                                  <a class="btn btn-default btn-sm pull-right" href="/userHome.html">See All Tasks</a>
+                              </div>
+                          </div>
+                      </section>
+                  </div><!--/col-md-12 -->
+              </div><!-- /row -->
+			
+		</section><!-- /wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
+      <!--main content end-->
+      <!--footer start-->
+      <div th:include="foot :: common_foot"></div>
+      <!--footer end-->
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+
+    <!--script for this page-->
+	<script src="js/jquery-ui.js"></script>    
+    <script src="assets/js/tasks.js" type="text/javascript"></script>
+
+
+	<script type="text/javascript">
+		//$( ":checkbox" ).click();
+		
+		var fengliclasses = [ "list-primary", "list-danger", "list-success", "list-warning", "list-info" ];
+		var fengspanclasses = [ "bg-theme", "bg-warning", "bg-success", "bg-info", "bg-important" ];
+
+		function getRndInteger(min, max) {
+		  return Math.floor(Math.random() * (max - min + 1) ) + min;
+		}
+		
+		$.each( $( "#sortable" ).children(), function( index, thiz ) {
+			var index = getRndInteger(0, 4);
+			$( thiz ).addClass( fengliclasses[index] );
+		} );
+		$.each( $( ".fengspan" ), function( index, thiz ) {
+			var index = getRndInteger(0, 4);
+			$( thiz ).addClass( fengspanclasses[index] );
+			
+			// fengspan badge bg-theme bg-important
+			//alert( $( thiz ).attr( "class" ) );
+		} );
+		
+	</script>
+
+
+
+    <script>
+      jQuery(document).ready(function() {
+          TaskList.initTaskWidget();
+      });
+
+      $(function() {
+          $( "#sortable" ).sortable();
+          $( "#sortable" ).disableSelection();
+      });
+
+    </script>
+    
+    
+  <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+  </body>
+</html>
