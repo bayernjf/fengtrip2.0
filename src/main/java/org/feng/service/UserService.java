@@ -3,7 +3,7 @@
  */
 package org.feng.service;
 
-import org.feng.bean.User;
+import org.feng.bean.UserPO;
 
 /**
  * @author 姜峰
@@ -12,15 +12,15 @@ import org.feng.bean.User;
 public interface UserService {
 
 	/**
-	 * @param user
+	 * @param userPO
 	 * @return
 	 */
-	User login(User user);
+	UserPO login(UserPO userPO);
 
 	/**
-	 * @param user
+	 * @param userPO
 	 * @return
 	 */
-	User register(User user);
+	UserPO register(UserPO userPO);
 
 }

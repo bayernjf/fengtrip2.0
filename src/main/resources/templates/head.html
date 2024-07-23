@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>JINGFENGTRIP</title>
+    <title>JIANGFENGTRIP</title>
 <!--     <title>DASHGUM - FREE Bootstrap Admin Template</title> -->
 
     <!-- Bootstrap core CSS -->
@@ -50,7 +50,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>WELCOME TO JINGFENGTRIP</b></a>
+            <a href="index.html" class="logo"><b>WELCOME TO JIANGFENGTRIP</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -194,14 +194,14 @@
             </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-            		<a class="logo"><b th:if="${session.user != null }" th:text="欢迎+${session.user.username }" th:style="'color:gray;'"></b></a>
-            		<a class="logo" th:href="@{/login.html}"><b th:if="${session.user == null }" th:text="访问请登录" th:style="'color:red;'"></b></a>
+            		<a class="logo"><b th:if="${session.userPO != null }" th:text="欢迎+${session.userPO.username }" th:style="'color:gray;'"></b></a>
+            		<a class="logo" th:href="@{/login.html}"><b th:if="${session.userPO == null }" th:text="访问请登录" th:style="'color:red;'"></b></a>
             	</ul>
             </div>
             
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a th:if="${session.user != null }" class="logout" href="/user/logout.do" th:text="Logout"></a></li>
+                    <li><a th:if="${session.userPO != null }" class="logout" href="/userPO/logout.do" th:text="Logout"></a></li>
             	</ul>
             </div>
         </header>

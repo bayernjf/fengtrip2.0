@@ -18,8 +18,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="jingfengtrip")
-public class JingFengTrip implements Serializable {
+@Table(name="jiangfengtrip")
+public class JiangFengTrip implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -101,7 +101,7 @@ public class JingFengTrip implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "JingFengTrip [id=" + id + ", location=" + location + ", activity=" + activity + ", transportation="
+		return "JiangFengTrip [id=" + id + ", location=" + location + ", activity=" + activity + ", transportation="
 				+ transportation + ", time=" + time + ", city=" + city + ", createTime=" + createTime + ", priority="
 				+ priority + ", userId=" + userId + ", stat=" + stat + "]";
 	}

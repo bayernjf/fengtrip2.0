@@ -4,8 +4,8 @@
 package org.feng.test;
 
 import org.feng.FengApp_8080;
-import org.feng.bean.JingFengTrip;
-import org.feng.dao.JingFengTripJpaSpecificationExecutor;
+import org.feng.bean.JiangFengTrip;
+import org.feng.dao.JiangFengTripJpaSpecificationExecutor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +18,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes={FengApp_8080.class})
-public class JingFengTripJpaSpecificationExecutorTest {
+public class JiangFengTripJpaSpecificationExecutorTest {
 
 	@Autowired
-	private JingFengTripJpaSpecificationExecutor repository;
+	private JiangFengTripJpaSpecificationExecutor repository;
 	
 	@Test
 	public void test() {
-		JingFengTrip jft = this.repository.findOne(1);
+		JiangFengTrip jft = this.repository.findOne(1);
 		System.out.println("test()================jft: " + jft);
 	}
 	
 	@Test
 	public void test2() {
-		JingFengTrip jft = new JingFengTrip();
+		JiangFengTrip jft = new JiangFengTrip();
 		jft.setLocation("龙子湖公园");
 		jft.setActivity("走马观花");
 		jft.setTransportation("步行、自行车");
 		jft.setTime("傍晚");
-		JingFengTrip result = this.repository.save(jft);
+		JiangFengTrip result = this.repository.save(jft);
 		System.out.println("test2()================result: " + result);
 	}
 	

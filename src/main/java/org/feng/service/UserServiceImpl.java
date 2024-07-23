@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.feng.bean.User;
+import org.feng.bean.UserPO;
 import org.feng.dao.UserJpaSpecificationExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -25,17 +25,17 @@ public class UserServiceImpl implements UserService {
 	private UserJpaSpecificationExecutor executor;
 
 	/* (non-Javadoc)
-	 * @see org.feng.service.UserService#login(org.feng.bean.User)
+	 * @see org.feng.service.UserService#login(org.feng.bean.UserPO)
 	 */
 	@Override
-	public User login(User user) {
-		Specification<User> spec = new Specification<User>() {
+	public UserPO login(UserPO userPO) {
+		Specification<UserPO> spec = new Specification<UserPO>() {
 			
 			@Override
-			public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<UserPO> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = cb.and(
-							cb.equal(root.get("username"), user.getUsername()),
-							cb.equal(root.get("password"), user.getPassword())
+							cb.equal(root.get("username"), userPO.getUsername()),
+							cb.equal(root.get("password"), userPO.getPassword())
 						);
 				return predicate;
 			}
@@ -44,11 +44,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.feng.service.UserService#register(org.feng.bean.User)
+	 * @see org.feng.service.UserService#register(org.feng.bean.UserPO)
 	 */
 	@Override
-	public User register(User user) {
-		return executor.save(user);
+	public UserPO register(UserPO userPO) {
+		return executor.save(userPO);
 	}
 
 }

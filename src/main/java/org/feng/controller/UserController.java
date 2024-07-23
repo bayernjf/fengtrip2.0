@@ -5,7 +5,7 @@ package org.feng.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.feng.bean.User;
+import org.feng.bean.UserPO;
 import org.feng.service.UserService;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,10 +31,10 @@ public class UserController {
 			@RequestParam(name="username", required=true) String username,
 			@RequestParam(name="password", required=true) String password) {
 
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		User result = us.login(user);
+		UserPO userPO = new UserPO();
+		userPO.setUsername(username);
+		userPO.setPassword(password);
+		UserPO result = us.login(userPO);
 		System.out.println("login========== result: " + result);
 		if (result != null) {
 			request.getSession().setAttribute("loginmsg", "");
@@ -54,11 +54,11 @@ public class UserController {
 			@RequestParam(name="username", required=true) String username,
 			@RequestParam(name="password", required=true) String password) {
 		
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-//		User result = us.login(user);
-		User result = us.register(user);
+		UserPO userPO = new UserPO();
+		userPO.setUsername(username);
+		userPO.setPassword(password);
+//		UserPO result = us.login(userPO);
+		UserPO result = us.register(userPO);
 		if (result != null) {
 			request.getSession().setAttribute("registermsg", "");
 			request.getSession().setAttribute("backtoindex", "yes");
@@ -84,10 +84,10 @@ public class UserController {
 			@RequestParam(name="password", required=true) String password) {
 		
 		JSONObject jobj = new JSONObject();
-		User tempOfUser = (User) request.getSession().getAttribute("tempOfUser");
+		UserPO tempOfUserPO = (UserPO) request.getSession().getAttribute("tempOfUser");
 		try {
-			if (tempOfUser.getPassword().equals(password)) {
-				request.getSession().setAttribute("user", tempOfUser);
+			if (tempOfUserPO.getPassword().equals(password)) {
+				request.getSession().setAttribute("user", tempOfUserPO);
 				jobj.put("code", 1);
 				jobj.put("msg", "/index.html");
 			} else {

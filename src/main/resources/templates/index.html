@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>JINGFENGTRIP</title>
+    <title>JIANGFENGTRIP</title>
 <!--     <title>DASHGUM - FREE Bootstrap Admin Template</title> -->
 
     <!-- Bootstrap core CSS -->
@@ -64,9 +64,9 @@
 							<div class="twitter-panel pn">
 								<i class="fa fa-twitter fa-4x"></i>
 <!-- 								<p>Dashgum is here! Take a look and enjoy this new Bootstrap Dashboard theme.</p>
-								<p class="user">@Alvrz_is</p> -->
+								<p class="userPO">@Alvrz_is</p> -->
 								<p>JingFengTrip is a magnificent web application, so welcome to this web site to organize your activities.</p>
-								<p class="user" th:if="${session.user != null }" th:text="'@'+${session.user.username }"></p>
+								<p class="userPO" th:if="${session.userPO != null }" th:text="'@'+${session.userPO.username }"></p>
 							</div>
 						</div><!-- /col-md-4 -->
 						
@@ -77,7 +77,7 @@
 									<h5>TOP USER</h5>
 								</div>
 								<p><img src="assets/img/tx.jpg" class="img-circle" width="50"></p>
-								<p><b th:if="${session.user != null }" th:text="${session.user.username }"></b></p>
+								<p><b th:if="${session.userPO != null }" th:text="${session.userPO.username }"></b></p>
 									<!-- <div class="row">
 										<div class="col-md-6">
 											<p class="small mt">MEMBER SINCE</p>

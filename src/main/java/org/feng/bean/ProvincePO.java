@@ -5,17 +5,10 @@ package org.feng.bean;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import com.alibaba.fastjson.JSON;
 
@@ -25,7 +18,7 @@ import com.alibaba.fastjson.JSON;
  */
 @Entity
 @Table(name="province")
-public class Province {
+public class ProvincePO {
 	
 	@Id
 	private Integer codeid;
@@ -35,34 +28,34 @@ public class Province {
 //	@ManyToOne
 //	@JoinColumn(name="parentfeng")
 //	@NotFound(action=NotFoundAction.IGNORE)
-//	private Province province;
+//	private ProvincePO province;
 ////	@OneToMany
-////	@JoinTable(name = "childrenProvinces", 
+////	@JoinTable(name = "childrenProvincePOS",
 ////			joinColumns = { @JoinColumn(name = "friendsId") }, 
 ////							inverseJoinColumns = { @JoinColumn(name = "ownId") })
 	@OneToMany
 //	@JoinColumn(name="parentfeng", nullable=true)
-	private List<Province> childrenProvinces;
+	private List<ProvincePO> childrenProvincePOS;
 	
-	public Province() {
+	public ProvincePO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Province(Integer codeid, Integer parentid, String cityname, List<Province> childrenProvinces) {
+	public ProvincePO(Integer codeid, Integer parentid, String cityname, List<ProvincePO> childrenProvincePOS) {
 		super();
 		this.codeid = codeid;
 		this.parentid = parentid;
 		this.cityname = cityname;
-		this.childrenProvinces = childrenProvinces;
+		this.childrenProvincePOS = childrenProvincePOS;
 	}
 
-	public List<Province> getChildrenProvinces() {
-		return childrenProvinces;
+	public List<ProvincePO> getChildrenProvinces() {
+		return childrenProvincePOS;
 	}
 
-	public void setChildrenProvinces(List<Province> childrenProvinces) {
-		this.childrenProvinces = childrenProvinces;
+	public void setChildrenProvinces(List<ProvincePO> childrenProvincePOS) {
+		this.childrenProvincePOS = childrenProvincePOS;
 	}
 
 	public Integer getCodeid() {
@@ -91,8 +84,8 @@ public class Province {
 
 	@Override
 	public String toString() {
-//		return "Province [codeid=" + codeid + ", parentid=" + parentid + ", cityname=" + cityname
-//				+ ", childrenProvinces=" + childrenProvinces + "]";
+//		return "ProvincePO [codeid=" + codeid + ", parentid=" + parentid + ", cityname=" + cityname
+//				+ ", childrenProvincePOS=" + childrenProvincePOS + "]";
 		return JSON.toJSONString(this);
 	}
 

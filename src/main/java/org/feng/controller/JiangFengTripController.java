@@ -8,11 +8,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.feng.bean.JingFengTrip;
-import org.feng.bean.Province;
-import org.feng.bean.User;
-import org.feng.service.JingFengTripService;
-import org.json.JSONException;
+import org.feng.bean.JiangFengTrip;
+import org.feng.bean.ProvincePO;
+import org.feng.bean.UserPO;
+import org.feng.service.JiangFengTripService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,38 +25,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-public class JingFengTripController {
+public class JiangFengTripController {
 
 	@Autowired
-	private JingFengTripService jfts;
+	private JiangFengTripService jfts;
 	
-	@RequestMapping("/jingfengtrip/getAllCities.do")
+	@RequestMapping("/jiangfengtrip/getAllCities.do")
 	@ResponseBody
 	private String getCities() {
 		JSONObject jobj = new JSONObject();
-		List<Province> provinces = jfts.getAllCities();
-		if (provinces != null && provinces.size() > 0) {
+		List<ProvincePO> provincePOS = jfts.getAllCities();
+		if (provincePOS != null && provincePOS.size() > 0) {
 			jobj.put("code", 1);
-			jobj.put("msg", provinces);
+			jobj.put("msg", provincePOS);
 		} else {
 			jobj.put("code", -1);
 			jobj.put("msg", "数据获取失败");
 		}
 		int count = 0;
-		for (Province province : provinces) {
-//			if (province.getChildrenProvinces().size() > 0) {
+		for (ProvincePO provincePO : provincePOS) {
+//			if (provincePO.getChildrenProvinces().size() > 0) {
 //				count += 1;
-//				System.out.println("=========== province: " + province);
+//				System.out.println("=========== provincePO: " + provincePO);
 //			}
 			count += 1;
-			System.out.println("=========== province: " + province);
+			System.out.println("=========== provincePO: " + provincePO);
 		}
 		System.out.println("=========== size: " + count);
 		
 		return jobj.toString();
 	}
 	
-	@RequestMapping("/jingfengtrip/addActivity.do")
+	@RequestMapping("/jiangfengtrip/addActivity.do")
 	public String addActivity(HttpServletRequest request,
 			@RequestParam(name="location", required=true) String location,
 			@RequestParam(name="activity", required=true) String activity,
@@ -73,7 +72,7 @@ public class JingFengTripController {
 //		System.out.println("========= priority: " + priority);
 //		System.out.println("========= city: " + city);
 		
-		JingFengTrip jft = new JingFengTrip();
+		JiangFengTrip jft = new JiangFengTrip();
 		jft.setLocation(location);
 		jft.setActivity(activity);
 		jft.setTransportation(transportation);
@@ -81,8 +80,8 @@ public class JingFengTripController {
 		jft.setPriority(priority);
 		jft.setCity(city);
 		jft.setCreateTime(new Date());
-		User user = (User) request.getSession().getAttribute("user");
-		jft.setUserId(user.getId());
+		UserPO userPO = (UserPO) request.getSession().getAttribute("user");
+		jft.setUserId(userPO.getId());
 		jft.setStat(0);
 		
 		jft.setLocation(city + " " + location);
@@ -97,10 +96,10 @@ public class JingFengTripController {
 	@RequestMapping("/userHome.html")
 	public String userHomePage(HttpServletRequest request, Model model) {
 		
-//		List<JingFengTrip> jingfengtrips = this.jfts.getAllJingFengTrips();
-		User user = (User) request.getSession().getAttribute("user");
-		Integer userId = user.getId();
-		List<JingFengTrip> jingfengtrips = this.jfts.getAllJingFengTripsByUser(userId);
+//		List<JiangFengTrip> jingfengtrips = this.jfts.getAllJingFengTrips();
+		UserPO userPO = (UserPO) request.getSession().getAttribute("user");
+		Integer userId = userPO.getId();
+		List<JiangFengTrip> jingfengtrips = this.jfts.getAllJingFengTripsByUser(userId);
 		model.addAttribute("jingfengtrips", jingfengtrips);
 		
 		return "userHome";

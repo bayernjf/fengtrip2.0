@@ -71,10 +71,10 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 		 */
 		InterceptorRegistration ir = registry.addInterceptor(new LoginInterceptor());
 		System.out.println("========================进入1");
-		ir.addPathPatterns("/**");
-		ir.excludePathPatterns("/login.html", "/register.html", "/lock_screen.html")
-			.excludePathPatterns("/index.html")
-			.excludePathPatterns("/user/login.do", "/user/register.do", "/user/lockScreen.do");
+		ir.addPathPatterns("/api/**");
+		ir.excludePathPatterns("/api/login.html", "/api/register.html", "/api/lock_screen.html")
+			.excludePathPatterns("/api/index.html")
+			.excludePathPatterns("/api/user/login.do", "/api/user/register.do", "/api/user/lockScreen.do");
 		System.out.println("========================进入2");
 	}
 

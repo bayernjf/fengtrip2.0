@@ -5,12 +5,10 @@ package org.feng.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.feng.bean.User;
+import org.feng.bean.UserPO;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.support.RequestPartServletServerHttpRequest;
 
 /**
  * @author 姜峰
@@ -57,10 +55,10 @@ public class ShowPageController {
 	@RequestMapping("/lock_screen.html")
 	public String lockScreenPage(HttpServletRequest request) {
 		
-		User tempOfUser = (User) request.getSession().getAttribute("user");
-		request.getSession().setAttribute("tempOfUser", tempOfUser);
+		UserPO tempOfUserPO = (UserPO) request.getSession().getAttribute("user");
+		request.getSession().setAttribute("tempOfUser", tempOfUserPO);
 		request.getSession().setAttribute("user", null);
-//		System.out.println("tempOfUser : " + tempOfUser);
+//		System.out.println("tempOfUserPO : " + tempOfUserPO);
 		return "lock_screen";
 	}
 

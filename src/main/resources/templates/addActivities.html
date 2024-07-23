@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>JINGFENGTRIP</title>
+    <title>JIANGFENGTRIP</title>
 <!--     <title>DASHGUM - FREE Bootstrap Admin Template</title> -->
 
     <!-- Bootstrap core CSS -->
@@ -58,7 +58,7 @@
           		<div class="col-lg-12">
                   <div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i> Activity Details</h4>
-                      <form id="fengaddform" action="/jingfengtrip/addActivity.do" class="form-horizontal style-form" method="post">
+                      <form id="fengaddform" action="/jiangfengtrip/addActivity.do" class="form-horizontal style-form" method="post">
                           
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">location</label>
@@ -98,7 +98,7 @@
                           </div>
                           <div class="form-group">
                           	<label class="col-sm-2 col-sm-2 control-label">city</label>
-                                                                      省：<select id="province" name="province">
+                                                                      省：<select id="provincePO" name="provincePO">
 							  <option value="-1">---请选择省---</option>
 							  <!-- <option value="1">jiang</option> -->
 							</select>
@@ -185,7 +185,7 @@
     
     
     	/* $.ajax( {
-    		url: "/jingfengtrip/getAllCities.do",
+    		url: "/jiangfengtrip/getAllCities.do",
     		dataType: "json",
   			success: function( result ) {
   				if ( result.code == 1 ) {
@@ -230,14 +230,14 @@
     	// 优化：获取前判断cookie中有没有地址信息，如果没有，从数据库获得
     	// 暂且不做优化
     	$.ajax( {
-	    	url: "/jingfengtrip/getAllCities.do",
+	    	url: "/jiangfengtrip/getAllCities.do",
 	    	type: "post",
 	    	dataType: "json",
 	    	success: function( result ) {
 	    		if ( result.code == 1 ) {
 	    			$.each( result.msg, function( key, thiz ) {
 	    				var fengCities = {  };
-	    				$.each( thiz.childrenProvinces, function( key2, thiz2 ) {
+	    				$.each( thiz.childrenProvincePOS, function( key2, thiz2 ) {
 	    					fengCities[thiz2.codeid] = {
     							cityname: thiz2.cityname
 	    					};
@@ -256,7 +256,7 @@
     	
     	function showCity() {
 	    	$( "#city" ).children( "option:not(:first)" ).remove();
-	    	var cities = fengAddress[$( "#province" ).val()]["cities"];
+	    	var cities = fengAddress[$( "#provincePO" ).val()]["cities"];
 	    	$.each( cities, function( key, thiz ) {
 	    		$( "#city" ).append( "<option value='"+key+"'>"+thiz.cityname+"</option>" );
 	    	} );
@@ -264,14 +264,14 @@
 	    	$( "#city option[value='3403']" ).attr("selected", "selected");
     	}
     	
-    	$( "#province" ).change( showCity );
+    	$( "#provincePO" ).change( showCity );
     	
     	function jiangfengjiang() {
 	    	$.each( fengAddress, function( keyIfObj, thiz ) {
-	    		$( "#province" ).append( "<option value='"+keyIfObj+"'>"+thiz.provinceName+"</option>" );
+	    		$( "#provincePO" ).append( "<option value='"+keyIfObj+"'>"+thiz.provinceName+"</option>" );
 	    	} );
 	    	
-	    	$( "#province option[value='34']" ).attr("selected", "selected");
+	    	$( "#provincePO option[value='34']" ).attr("selected", "selected");
 	    	showCity();
     	}
     	

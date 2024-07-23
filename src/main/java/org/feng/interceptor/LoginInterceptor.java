@@ -6,7 +6,7 @@ package org.feng.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.feng.bean.User;
+import org.feng.bean.UserPO;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,8 +43,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
-		User user = (User) request.getSession().getAttribute("user");
-		if (user != null) {
+		UserPO userPO = (UserPO) request.getSession().getAttribute("user");
+		if (userPO != null) {
 //			System.out.println("======================== not null");
 			request.getSession().setAttribute("remindtologinmsg", "");
 			return true;
@@ -52,7 +52,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 //			System.out.println("======================== null");
 //			request.getRequestDispatcher("/index.html").forward(request, response);
 			request.getSession().setAttribute("remindtologinmsg", "若访问，请登录");
-			response.sendRedirect("/index.html");
+			response.sendRedirect("/api/index.html");
 			return false;
 		}
 	}
