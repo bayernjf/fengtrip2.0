@@ -11,13 +11,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.alibaba.fastjson.JSON;
+import lombok.Data;
 
 /**
  * @author 姜峰
  *
  */
-@Entity
-@Table(name="province")
+@Data
 public class ProvincePO {
 	
 	@Id

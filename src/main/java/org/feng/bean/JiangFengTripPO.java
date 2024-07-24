@@ -3,6 +3,8 @@
  */
 package org.feng.bean;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,9 +19,8 @@ import javax.persistence.Table;
  * @author 姜峰
  *
  */
-@Entity
-@Table(name="jiangfengtrip")
-public class JiangFengTrip implements Serializable {
+@Data
+public class JiangFengTripPO implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -101,7 +102,7 @@ public class JiangFengTrip implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "JiangFengTrip [id=" + id + ", location=" + location + ", activity=" + activity + ", transportation="
+		return "JiangFengTripPO [id=" + id + ", location=" + location + ", activity=" + activity + ", transportation="
 				+ transportation + ", time=" + time + ", city=" + city + ", createTime=" + createTime + ", priority="
 				+ priority + ", userId=" + userId + ", stat=" + stat + "]";
 	}

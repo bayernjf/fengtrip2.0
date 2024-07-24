@@ -4,6 +4,8 @@
 package org.feng.service;
 
 import org.feng.bean.UserPO;
+import org.feng.dto.UserDTO;
+import org.feng.dto.UserParameterDTO;
 
 /**
  * @author 姜峰
@@ -12,15 +14,15 @@ import org.feng.bean.UserPO;
 public interface UserService {
 
 	/**
-	 * @param userPO
+	 * @param userParameterDTO
 	 * @return
 	 */
-	UserPO login(UserPO userPO);
+	UserDTO login(UserParameterDTO userParameterDTO);
 
 	/**
 	 * @param userPO
 	 * @return
 	 */
-	UserPO register(UserPO userPO);
+	UserDTO register(UserParameterDTO userParameterDTO);
 
 }

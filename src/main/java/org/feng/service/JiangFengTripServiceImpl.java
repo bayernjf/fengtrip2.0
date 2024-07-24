@@ -3,20 +3,10 @@
  */
 package org.feng.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
-import org.feng.bean.JiangFengTrip;
+import org.feng.bean.JiangFengTripPO;
 import org.feng.bean.ProvincePO;
-import org.feng.dao.JiangFengTripJpaSpecificationExecutor;
-import org.feng.dao.ProvinceJpaSpecificationExecutor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,65 +15,44 @@ import org.springframework.stereotype.Service;
  */
 @Service("jingFengTripService")
 public class JiangFengTripServiceImpl implements JiangFengTripService {
-	
-	@Autowired
-	private JiangFengTripJpaSpecificationExecutor jingFengTripExecutor;
-
-	@Autowired
-	private ProvinceJpaSpecificationExecutor provinceExecutor;
-
-	/* (non-Javadoc)
-	 * @see org.feng.service.JiangFengTripService#getAllCities()
-	 */
 	@Override
 	public List<ProvincePO> getAllCities() {
-		List<ProvincePO> provincePOS = provinceExecutor.findAll();
-		List<ProvincePO> result = new ArrayList<>();
-		for (ProvincePO provincePO : provincePOS) {
-			List<ProvincePO> childrenProvincePOS = new ArrayList<>();
-			for (ProvincePO city : provincePOS) {
-				if (provincePO.getCodeid() == city.getParentid()) {
-					childrenProvincePOS.add(city);
-				}
-			}
-			provincePO.setChildrenProvinces(childrenProvincePOS);
-			if (provincePO.getChildrenProvinces().size() > 0) {
-				result.add(provincePO);
-			}
-		}
-		return result;
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.feng.service.JiangFengTripService#addActivity(org.feng.bean.JiangFengTrip)
-	 */
 	@Override
-	public JiangFengTrip addActivity(JiangFengTrip jft) {
-		return this.jingFengTripExecutor.save(jft);
+	public JiangFengTripPO addActivity(JiangFengTripPO jft) {
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.feng.service.JiangFengTripService#getAllJingFengTrips()
-	 */
 	@Override
-	public List<JiangFengTrip> getAllJingFengTrips() {
-		return this.jingFengTripExecutor.findAll();
+	public List<JiangFengTripPO> getAllJingFengTrips() {
+		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.feng.service.JiangFengTripService#getAllJingFengTripsByUser(java.lang.Integer)
-	 */
 	@Override
-	public List<JiangFengTrip> getAllJingFengTripsByUser(Integer userId) {
-		Specification<JiangFengTrip> spec = new Specification<JiangFengTrip>() {
-			
-			@Override
-			public Predicate toPredicate(Root<JiangFengTrip> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate predicate = cb.equal(root.get("userId"), userId);
-				return predicate;
-			}
-		};
-		return this.jingFengTripExecutor.findAll(spec);
+	public List<JiangFengTripPO> getAllJingFengTripsByUser(Integer userId) {
+		return null;
 	}
+
+//	@Override
+//	public List<ProvincePO> getAllCities() {
+//		List<ProvincePO> provincePOS = provinceExecutor.findAll();
+//		List<ProvincePO> result = new ArrayList<>();
+//		for (ProvincePO provincePO : provincePOS) {
+//			List<ProvincePO> childrenProvincePOS = new ArrayList<>();
+//			for (ProvincePO city : provincePOS) {
+//				if (provincePO.getCodeid() == city.getParentid()) {
+//					childrenProvincePOS.add(city);
+//				}
+//			}
+//			provincePO.setChildrenProvinces(childrenProvincePOS);
+//			if (provincePO.getChildrenProvinces().size() > 0) {
+//				result.add(provincePO);
+//			}
+//		}
+//		return result;
+//	}
+
 
 }

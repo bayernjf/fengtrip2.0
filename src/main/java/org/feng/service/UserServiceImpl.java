@@ -8,8 +8,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.catalina.User;
 import org.feng.bean.UserPO;
-import org.feng.dao.UserJpaSpecificationExecutor;
+import org.feng.dto.UserDTO;
+import org.feng.dto.UserParameterDTO;
+import org.feng.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -20,35 +23,22 @@ import org.springframework.stereotype.Service;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	
-	@Autowired
-	private UserJpaSpecificationExecutor executor;
 
-	/* (non-Javadoc)
-	 * @see org.feng.service.UserService#login(org.feng.bean.UserPO)
-	 */
+	@Autowired
+	private UserMapper userMapper;
+
 	@Override
-	public UserPO login(UserPO userPO) {
-		Specification<UserPO> spec = new Specification<UserPO>() {
-			
-			@Override
-			public Predicate toPredicate(Root<UserPO> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate predicate = cb.and(
-							cb.equal(root.get("username"), userPO.getUsername()),
-							cb.equal(root.get("password"), userPO.getPassword())
-						);
-				return predicate;
-			}
-		};
-		return executor.findOne(spec);
+	public UserDTO login(UserParameterDTO userParameterDTO) {
+		UserDTO result = new UserDTO();
+		UserPO one = userMapper.findOne(userParameterDTO);
+		result.setUsername(one.getUsername());
+		result.setPassword(one.getPassword());
+		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.feng.service.UserService#register(org.feng.bean.UserPO)
-	 */
 	@Override
-	public UserPO register(UserPO userPO) {
-		return executor.save(userPO);
+	public UserDTO register(UserParameterDTO userParameterDTO) {
+		return null;
 	}
 
 }

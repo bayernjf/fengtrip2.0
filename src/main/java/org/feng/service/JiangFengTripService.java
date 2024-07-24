@@ -5,7 +5,7 @@ package org.feng.service;
 
 import java.util.List;
 
-import org.feng.bean.JiangFengTrip;
+import org.feng.bean.JiangFengTripPO;
 import org.feng.bean.ProvincePO;
 
 /**
@@ -14,26 +14,12 @@ import org.feng.bean.ProvincePO;
  */
 public interface JiangFengTripService {
 
-	/**
-	 * @return
-	 */
 	List<ProvincePO> getAllCities();
 
-	/**
-	 * @param jft
-	 * @return
-	 */
-	JiangFengTrip addActivity(JiangFengTrip jft);
+	JiangFengTripPO addActivity(JiangFengTripPO jft);
 
-	/**
-	 * @return
-	 */
-	List<JiangFengTrip> getAllJingFengTrips();
+	List<JiangFengTripPO> getAllJingFengTrips();
 
-	/**
-	 * @param userId
-	 * @return
-	 */
-	List<JiangFengTrip> getAllJingFengTripsByUser(Integer userId);
+	List<JiangFengTripPO> getAllJingFengTripsByUser(Integer userId);
 
 }

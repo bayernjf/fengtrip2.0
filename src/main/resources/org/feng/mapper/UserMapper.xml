@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.feng.mapper.UserMapper">
+
+    <resultMap id="userPOResultMap" type="org.feng.bean.UserPO">
+        <result property="username" javaType="String" column="username" jdbcType="VARCHAR" />
+        <result property="password" javaType="String" column="password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="findOne" parameterType="org.feng.dto.UserParameterDTO" resultMap="userPOResultMap">
+        SELECT * FROM user WHERE username = #{username} AND password = #{password};
+    </select>
+
+    <insert id="save">
+        INSERT INTO user (username, password) VALUES (#{username}, #{password});
+    </insert>
+
+</mapper>

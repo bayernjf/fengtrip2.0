@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.feng.bean.JiangFengTrip;
+import org.feng.bean.JiangFengTripPO;
 import org.feng.bean.ProvincePO;
 import org.feng.bean.UserPO;
 import org.feng.service.JiangFengTripService;
@@ -72,7 +72,7 @@ public class JiangFengTripController {
 //		System.out.println("========= priority: " + priority);
 //		System.out.println("========= city: " + city);
 		
-		JiangFengTrip jft = new JiangFengTrip();
+		JiangFengTripPO jft = new JiangFengTripPO();
 		jft.setLocation(location);
 		jft.setActivity(activity);
 		jft.setTransportation(transportation);
@@ -96,10 +96,10 @@ public class JiangFengTripController {
 	@RequestMapping("/userHome.html")
 	public String userHomePage(HttpServletRequest request, Model model) {
 		
-//		List<JiangFengTrip> jingfengtrips = this.jfts.getAllJingFengTrips();
+//		List<JiangFengTripPO> jingfengtrips = this.jfts.getAllJingFengTrips();
 		UserPO userPO = (UserPO) request.getSession().getAttribute("user");
 		Integer userId = userPO.getId();
-		List<JiangFengTrip> jingfengtrips = this.jfts.getAllJingFengTripsByUser(userId);
+		List<JiangFengTripPO> jingfengtrips = this.jfts.getAllJingFengTripsByUser(userId);
 		model.addAttribute("jingfengtrips", jingfengtrips);
 		
 		return "userHome";
