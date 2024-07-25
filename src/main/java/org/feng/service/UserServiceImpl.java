@@ -3,24 +3,22 @@
  */
 package org.feng.service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
-import org.apache.catalina.User;
+import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
 import org.feng.bean.UserPO;
 import org.feng.dto.UserDTO;
 import org.feng.dto.UserParameterDTO;
 import org.feng.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 
 /**
  * @author 姜峰
  *
  */
+@Slf4j
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
@@ -29,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO login(UserParameterDTO userParameterDTO) {
+		HashMap<Object, Object> objectObjectHashMap = Maps.newHashMap();
 		UserDTO result = new UserDTO();
 		UserPO one = userMapper.findOne(userParameterDTO);
 		result.setUsername(one.getUsername());
