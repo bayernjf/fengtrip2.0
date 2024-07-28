@@ -37,6 +37,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO register(UserParameterDTO userParameterDTO) {
+		UserDTO result = new UserDTO();
+		UserPO one = userMapper.findOneByUsername(userParameterDTO);
+		if (one != null) {
+			return null;
+		}
+		Boolean flag = userMapper.addOne(userParameterDTO);
+		if (flag) {
+			result.setUsername(userParameterDTO.getUsername());
+			result.setPassword(userParameterDTO.getPassword());
+			return result;
+		}
 		return null;
 	}
 

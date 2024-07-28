@@ -3,18 +3,15 @@
  */
 package org.feng.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.feng.bean.UserPO;
 import org.feng.dto.UserDTO;
 import org.feng.dto.UserParameterDTO;
 import org.feng.service.UserService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author 姜峰
@@ -29,50 +26,32 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public UserDTO login(@RequestBody UserParameterDTO userParameterDTO) {
-		return userService.login(userParameterDTO);
+		UserDTO result = userService.login(userParameterDTO);
+		return result;
 	}
 
-	@RequestMapping("/user/register.do")
-	public String register(HttpServletRequest request, Model model,
-			@RequestParam(name="username", required=true) String username,
-			@RequestParam(name="password", required=true) String password) {
-		
-		return null;
-		
+	@PostMapping("/register")
+	public UserDTO register(@RequestBody  UserParameterDTO userParameterDTO) {
+		return userService.register(userParameterDTO);
 	}
 
-	@RequestMapping("/user/logout.do")
-	public String logout(HttpServletRequest request, Model model) {
-		
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		// TODO jiangfeng-20240729 使用JWT实现跨域认证，存登录信息。
 		request.getSession().setAttribute("user", null);
-		return "redirect:/index.html";
-		
+		return "/api/index.html";
 	}
 
-	@RequestMapping("/user/lockScreen.do")
-	@ResponseBody
-	public String lockScreen(HttpServletRequest request, Model model,
-			@RequestParam(name="password", required=true) String password) {
-		
+	@GetMapping("lockScreen")
+	public String lockScreen(@RequestParam(name="password", required=true) String password) {
 		JSONObject jobj = new JSONObject();
-		UserPO tempOfUserPO = (UserPO) request.getSession().getAttribute("tempOfUser");
 		try {
-			if (tempOfUserPO.getPassword().equals(password)) {
-				request.getSession().setAttribute("user", tempOfUserPO);
-				jobj.put("code", 1);
-				jobj.put("msg", "/index.html");
-			} else {
-				request.getSession().setAttribute("user", null);
-				jobj.put("code", -1);
-				jobj.put("msg", "密码错误");
-			}
+			jobj.put("code", 1);
+			jobj.put("msg", "/api/index.html");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//return "redirect:/index.html";
 		return jobj.toString();
-		
 	}
 
 }

@@ -61,7 +61,7 @@
 		            </div>
 		            <div class="registration">
 		                Don't have an account yet?<br/>
-		                <a class="" href="/register.html">
+		                <a class="" href="/api/register.html">
 		                    Create an account
 		                </a>
 		            </div>
@@ -103,6 +103,8 @@
 	  <script src="assets/js/vue.js"/>
 	  <script src="assets/js/axios.js"/>
 	  <script src="assets/js/vue-router.js"/>
+<!--	  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+	  <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 
     <!--BACKSTRETCH-->
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
@@ -118,7 +120,7 @@
 					try {
 						// 模拟登录请求，实际应用中应该是API调用
 						await this.simulateLogin();
-
+						console.log('===================jiangfeng========================');
 						// 登录成功后，重定向到首页
 						this.$router.push({ name: 'home' });
 					} catch (error) {
@@ -138,6 +140,31 @@
 		};
 	</script>
 
+	  <div id="app">
+		  {{ info }}
+	  </div>
+	  <script type = "text/javascript">
+		  new Vue({
+			  el: '#app',
+			  data () {
+				  return {
+					  info: null
+				  }
+			  },
+			  mounted () {
+				  axios.post('localhost:8080/api/user/login', {
+					  "username": "feng",
+					  "password": "fff"
+				  })
+						  .then(function (response) {
+							  console.log(response);
+						  })
+						  .catch(function (error) {
+							  console.log(error);
+						  });
+			  }
+		  })
+	  </script>
 
   </body>
 </html>

@@ -14,8 +14,12 @@
         SELECT * FROM user WHERE username = #{username} AND password = #{password};
     </select>
 
-    <insert id="save">
+    <insert id="addOne" parameterType="org.feng.dto.UserParameterDTO">
         INSERT INTO user (username, password) VALUES (#{username}, #{password});
     </insert>
+
+    <select id="findOneByUsername" parameterType="org.feng.dto.UserParameterDTO" resultMap="userPOResultMap">
+        SELECT * FROM user WHERE username = #{username};
+    </select>
 
 </mapper>

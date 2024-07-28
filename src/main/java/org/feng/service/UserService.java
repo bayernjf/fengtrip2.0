@@ -3,7 +3,6 @@
  */
 package org.feng.service;
 
-import org.feng.bean.UserPO;
 import org.feng.dto.UserDTO;
 import org.feng.dto.UserParameterDTO;
 
@@ -20,7 +19,7 @@ public interface UserService {
 	UserDTO login(UserParameterDTO userParameterDTO);
 
 	/**
-	 * @param userPO
+	 * @param userParameterDTO
 	 * @return
 	 */
 	UserDTO register(UserParameterDTO userParameterDTO);
