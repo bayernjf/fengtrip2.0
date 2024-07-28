@@ -3,22 +3,20 @@
  */
 package org.feng.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.fastjson.JSONObject;
 import org.feng.bean.JiangFengTripPO;
 import org.feng.bean.ProvincePO;
 import org.feng.bean.UserPO;
 import org.feng.service.JiangFengTripService;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author 姜峰
@@ -92,7 +90,7 @@ public class JiangFengTripController {
 		
 		return "redirect:/addActivities.html";
 	}
-	
+	/*
 	@RequestMapping("/userHome.html")
 	public String userHomePage(HttpServletRequest request, Model model) {
 		
@@ -104,5 +102,5 @@ public class JiangFengTripController {
 		
 		return "userHome";
 	}
-
+*/
 }

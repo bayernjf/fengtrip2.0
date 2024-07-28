@@ -3,12 +3,12 @@
  */
 package org.feng.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.feng.bean.UserPO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author 姜峰
@@ -60,6 +60,11 @@ public class ShowPageController {
 		request.getSession().setAttribute("user", null);
 //		System.out.println("tempOfUserPO : " + tempOfUserPO);
 		return "lock_screen";
+	}
+
+	@RequestMapping("/userHome.html")
+	public String userHomePage(HttpServletRequest request) {
+		return "userHome";
 	}
 
 }
