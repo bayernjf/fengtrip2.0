@@ -24,9 +24,11 @@ public class ArticleExtractController {
         System.out.println(content);
         // ExtractWordsPO mapper方法返回对象，和数据库记录对应
         List<ExtractWordsDTO> result = new ArrayList<>();
-        ExtractWordsDTO extractWordsDTO = new ExtractWordsDTO();
-        extractWordsDTO.setResult("jiangfeng is 国王");
-        result.add(extractWordsDTO);
+        for (int i = 0; i < 10; i++) {
+            ExtractWordsDTO extractWordsDTO = new ExtractWordsDTO();
+            extractWordsDTO.setResult("jiangfeng is 国王 " + i);
+            result.add(extractWordsDTO);
+        }
         return result;
     }
 }
